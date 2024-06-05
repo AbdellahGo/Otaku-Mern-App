@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { container } from "../classes"
 import { FaLink } from "react-icons/fa";
 import { ArgTypes } from '../types'
