@@ -1,4 +1,4 @@
-import express, { request, response } from 'express'
+import express from 'express'
 import { Otaku } from '../models/otakuModel.js'
 
 const router = express.Router()

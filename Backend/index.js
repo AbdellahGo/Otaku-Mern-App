@@ -1,5 +1,4 @@
 import express from 'express'
-import { PORT, MONGODB_CONNECTION } from './config.js'
 import mongoose from 'mongoose'
 import otakuRoute from './routes/otakuRoute.js'
 import cors from 'cors'
@@ -31,11 +30,11 @@ app.use('/otaku', otakuRoute)
 
 
 mongoose
-    .connect(MONGODB_CONNECTION)
+    .connect(process.env.MONGODB_CONNECTION)
     .then(() => {
         console.log('App Connected to database');
-        app.listen(PORT, () => {
-            console.log(`App is listening to port: ${PORT}`);
+        app.listen(process.env.PORT, () => {
+            console.log(`App is listening to port: ${process.env.PORT}`);
         })
     })
     .catch((error) => {
