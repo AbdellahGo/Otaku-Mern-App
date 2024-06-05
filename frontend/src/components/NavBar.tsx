@@ -3,9 +3,7 @@ import { container } from "../classes"
 import { otakuLogo, profileAvatar } from '../assets'
 import { useEffect, useRef, useState } from 'react';
 import { FaRegCircleXmark } from "react-icons/fa6";
-import { USERNAME_DB, PASSWORD_DB } from '../config'
 import { IoMenu } from "react-icons/io5";
-
 
 
 type NavLinksTypes = {
@@ -60,10 +58,12 @@ const NavBar = () => {
   const [activeSubMenu, setActiveSubMenu] = useState<boolean>(false)
 
 
+  
+
   const handleLogin = (e: React.FormEvent) => {
     const username = usernameInput.current?.value
     const password = passwordInput.current?.value
-    if (username === USERNAME_DB && password === PASSWORD_DB) {
+    if (username === process.env.USERNAME_DB && password === process.env.PASSWORD_DB) {
       e.preventDefault()
       const userData = { username, password }
       localStorage.setItem('userData', JSON.stringify(userData))

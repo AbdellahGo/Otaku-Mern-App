@@ -24,7 +24,7 @@ type SerieType = {
     releaseDate: string
 } | undefined
 
-const baseUrl = 'http://localhost:8080/otaku'
+const baseUrl = 'https://otaku-mern-app.onrender.com/otaku'
 export const seriesApi = createApi({
     reducerPath: 'seriesApi',
     baseQuery: fetchBaseQuery({ baseUrl }),

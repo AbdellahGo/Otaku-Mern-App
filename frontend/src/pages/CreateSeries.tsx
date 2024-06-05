@@ -3,7 +3,6 @@ import { CreationEditForm } from "../components"
 import axios from "axios";
 import { ArgTypes } from '../types'
 import { useState } from "react";
-import { PASSWORD_DB, USERNAME_DB } from "../config";
 import { container } from "../classes";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaRegCircleXmark } from "react-icons/fa6";
@@ -15,7 +14,7 @@ const CreateSeries = () => {
     if (title && type && chapters && imageUrl) {
       e.preventDefault();
       const userData = JSON.parse(localStorage.getItem('userData') as string)
-      if (userData && userData?.username === USERNAME_DB && userData?.password === PASSWORD_DB) {
+      if (userData && userData?.username === process.env.USERNAME_DB && userData?.password === process.env.PASSWORD_DB) {
         try {
           const data = {
             genres: selectedGenres,
@@ -30,7 +29,7 @@ const CreateSeries = () => {
             image: imageUrl,
           };
 
-          await axios.post('http://localhost:8080/otaku', data);
+          await axios.post('https://otaku-mern-app.onrender.com/otaku', data);
           navigate('/');
         } catch (error) {
           if (axios.isAxiosError(error)) {

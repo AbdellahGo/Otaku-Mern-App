@@ -3,7 +3,6 @@ import { container } from "../classes"
 import { useGetSerieByIdQuery } from "../redux/RTKApis/seriesApi"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { PASSWORD_DB, USERNAME_DB } from "../config"
 import { FaRegCircleXmark } from "react-icons/fa6"
 import { FaInfoCircle } from "react-icons/fa"
 import { noSeries } from "../assets"
@@ -16,9 +15,10 @@ const SerieDetails = () => {
     const navigate = useNavigate()
     const { data, isLoading, refetch } = useGetSerieByIdQuery(id)
     const headerStyles: string = 'px-[16px] pb-[12px] pt-[20px] text-white'
+    
     const handleDeleteSerie = async () => {
         const userData = JSON.parse(localStorage.getItem('userData') as string)
-        if (userData && userData?.username === USERNAME_DB && userData?.password === PASSWORD_DB) {
+        if (userData && userData?.username === process.env.USERNAME_DB && userData?.password === process.env.PASSWORD_DB) {
             setNoUser(false)
             try {
                 axios.delete(`https://otaku-mern-app.onrender.com/otaku${id}`)

@@ -2,7 +2,6 @@ import { CreationEditForm } from "../components"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArgTypes } from '../types'
-import { PASSWORD_DB, USERNAME_DB } from "../config";
 import { useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { container } from "../classes";
@@ -17,7 +16,7 @@ const EditSeries = () => {
         if (title && type && chapters && imageUrl) {
             e.preventDefault()
             const userData = JSON.parse(localStorage.getItem('userData') as string)
-            if (userData && userData?.username === USERNAME_DB && userData?.password === PASSWORD_DB) {
+            if (userData && userData?.username === process.env.USERNAME_DB && userData?.password === process.env.PASSWORD_DB) {
                 setNoUser(false)
                 try {
                     const data = {
