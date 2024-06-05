@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import otakuRoute from './routes/otakuRoute.js'
 import cors from 'cors'
+import 'dotenv/config'
 
 
 const app = express()
@@ -21,16 +22,16 @@ app.use(cors());
 //   })
 // );
 
-app.get('/' , (req, res) => {
+app.get('/', (req, res) => {
     console.log(req);
     return res.status(234).send('Welcome To Otaku')
 })
 
 app.use('/otaku', otakuRoute)
-
+    
 
 mongoose
-    .connect(process.env.MONGODB_CONNECTION)
+    .connect(process.env.MONGODB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('App Connected to database');
         app.listen(process.env.PORT, () => {
