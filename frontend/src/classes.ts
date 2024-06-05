@@ -1,0 +1,1 @@
+export const container = 'xl:w-[1176px] lg:w-[969px] md:w-[745px] sm:w-[553px] w-full mx-auto xl:px-[40px] px-[12px]'

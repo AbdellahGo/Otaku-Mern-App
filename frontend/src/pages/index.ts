@@ -1,0 +1,6 @@
+export {default as Home} from './Home'
+export {default as SeriesPage} from './SeriesPage'
+export {default as OtakuDetails} from './OtakuDetails'
+export {default as CreateSeries} from './CreateSeries'
+export {default as EditSeries} from './EditSeries'
+export {default as NotFoundPage} from './NotFoundPage'

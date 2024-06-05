@@ -1,0 +1,5 @@
+export {default as otakuLogo} from './otakuLogo.png'
+export {default as profileAvatar} from './profileAvatar.png'
+export {default as banner} from './banner.png'
+export {default as defaultImage} from './defaultImage.jpg'
+export {default as noSeries} from './noSeries.png'
