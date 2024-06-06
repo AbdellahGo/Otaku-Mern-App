@@ -31,7 +31,7 @@ const EditSeries = () => {
                         description: description || 'Not entered',
                         image: imageUrl,
                     };
-                    await axios.put(`https://otaku-mern-app.onrender.com/otaku${id}`, data);
+                    await axios.put(`https://otaku-mern-app.onrender.com/otaku/${id}`, data);
                     navigate('/');
                 } catch (error) {
                     if (axios.isAxiosError(error)) {

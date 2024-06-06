@@ -21,7 +21,7 @@ const SerieDetails = () => {
         if (userData && userData?.username === process.env.USERNAME_DB && userData?.password === process.env.PASSWORD_DB) {
             setNoUser(false)
             try {
-                axios.delete(`https://otaku-mern-app.onrender.com/otaku${id}`)
+                axios.delete(`https://otaku-mern-app.onrender.com/otaku/${id}`)
                 navigate('/')
             } catch (error) {
                 console.log(error);

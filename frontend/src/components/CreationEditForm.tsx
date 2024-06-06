@@ -58,7 +58,7 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
 
     useEffect(() => {
         if (id) {
-            axios.get(`https://otaku-mern-app.onrender.com/otaku${id}`)
+            axios.get(`https://otaku-mern-app.onrender.com/otaku/${id}`)
             .then((response) => {
                 const { genres, title, type, releaseDate, status, chapters, author, description, image, lastReadChapter } = response.data
                 setSelectedGenres(genres)
