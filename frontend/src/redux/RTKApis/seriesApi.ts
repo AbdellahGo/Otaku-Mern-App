@@ -7,7 +7,8 @@ type SeriesType = {
         title: string,
         image: string,
         status: string,
-        chapters: number
+        chapters: string
+        lastReadChapter: string
     }[] | undefined
 }
 type SerieType = {
@@ -15,7 +16,7 @@ type SerieType = {
     title: string,
     image: string,
     status: string,
-    chapters: number
+    chapters: string
     type: string
     author: string,
     lastReadChapter: string
