@@ -2,7 +2,7 @@ import { CreationEditForm } from "../components"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArgTypes } from '../types'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { container } from "../classes";
 import { FaRegCircleXmark } from "react-icons/fa6";
@@ -12,7 +12,8 @@ const EditSeries = () => {
     const [noUser, setNoUser] = useState<boolean | null>()
     const { id } = useParams()
     const navigate = useNavigate()
-    const handleEditSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters,lastReadChapter, author, description, imageUrl, selectedGenres }: ArgTypes) => {
+
+    const handleEditSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, lastWatch, author, description, imageUrl, selectedGenres }: ArgTypes) => {
         if (title && type && chapters && imageUrl) {
             e.preventDefault()
             const userData = JSON.parse(localStorage.getItem('userData') as string)
@@ -26,12 +27,13 @@ const EditSeries = () => {
                         releaseDate: releaseDate || 'Not entered',
                         status: status,
                         chapters: chapters,
-                        lastReadChapter: lastReadChapter,
+                        lastWatch: lastWatch || '0',
                         author: author || 'Not entered',
                         description: description || 'Not entered',
                         image: imageUrl,
                     };
                     await axios.put(`https://otaku-mern-app.onrender.com/otaku/${id}`, data);
+                    axios.get(``)
                     navigate('/');
                 } catch (error) {
                     if (axios.isAxiosError(error)) {
@@ -48,7 +50,9 @@ const EditSeries = () => {
         }
 
     }
-
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, [])
     return (
         <div>
             {noUser && (

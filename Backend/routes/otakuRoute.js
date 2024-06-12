@@ -7,19 +7,15 @@ const router = express.Router()
 //? Route for Save a new (Manga, Manhwa, Manhua, Anime)
 
 router.post('/', async (request, response) => {
-    const { title, type, releaseDate, status, chapters, author, genres, lastReadChapter, description, image } = request.body
+    const { title, type, releaseDate, status, chapters, author, genres, lastWatch, description, image } = request.body
     try {
-        if (
-            !title || !type || !releaseDate || !status ||
-            !chapters || !author || genres.length <= 0 ||
-            !description || !image || !lastReadChapter
-        ) {
+        if (!title || !type || !chapters || !image) {
             return response.status(400).send(({
-                message: 'send all required fields:  title, type, releaseDate, status, chapters, author, genres, description, image '
+                message: 'please send this required field:  title, type, chapters, image '
             }))
         }
         const newOtaku = {
-            title, type, releaseDate, status, chapters, author, genres, description, image, lastReadChapter
+            title, type, releaseDate, status, chapters, author, genres, description, image, lastWatch
         }
         const otaku = await Otaku.create(newOtaku)
         return response.status(201).send(otaku)
@@ -110,15 +106,11 @@ router.get('/:id', async (request, response) => {
 
 //? Route for update a (Manga, Manhwa, Manhua, Anime)
 router.put('/:id', async (request, response) => {
-    const { title, type, releaseDate, status, chapters, author, genres,lastReadChapter, description, image } = request.body
+    const { title, type, chapters, image } = request.body
     try {
-        if (
-            !title || !type || !releaseDate || !status ||
-            !chapters || !author || !genres ||
-            !description || !image || !lastReadChapter
-        ) {
+        if (!title || !type || !chapters || !image) {
             return response.status(400).send(({
-                message: 'send all required fields:  title, type, releaseDate, status, chapters, author, genres, description, image '
+                message: 'please send this required field:  title, type, chapters, image '
             }))
         }
         const { id } = request.params

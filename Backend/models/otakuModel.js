@@ -23,7 +23,7 @@ const otakuSchema = mongoose.Schema(
             type: String,
             require: true,
         },
-        lastReadChapter: {
+        lastWatch: {
             type: String,
             require: true,
         },

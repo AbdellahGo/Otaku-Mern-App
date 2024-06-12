@@ -14,12 +14,12 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
     const [releaseDate, setReleaseDate] = useState<string>('')
     const [status, setStatus] = useState<string>('Complete')
     const [chapters, setChapters] = useState<string>('')
-    const [lastReadChapter, setLastReadChapter] = useState<string>('')
+    const [lastWatch, setLastWatch] = useState<string>('')
     const [author, setAuthor] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [imageUrl, setImageUrl] = useState<string>('')
 
-    const formData = { title, type, releaseDate, status, chapters, author, description, imageUrl, selectedGenres, lastReadChapter }
+    const formData = { title, type, releaseDate, status, chapters, author, description, imageUrl, selectedGenres, lastWatch }
 
     const inputStyles: string = 'w-full outline-none bg-veryDarkBlueGray p-[15px] rounded-[12px] placeholder:text-lightSkyBlue text-16 leading-[24px] text-lightSkyBlue border-1 border-lightSkyBlue'
     const labelStyles: string = 'block text-18 font-semibold mb-[8px]'
@@ -59,21 +59,21 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
     useEffect(() => {
         if (id) {
             axios.get(`https://otaku-mern-app.onrender.com/otaku/${id}`)
-            .then((response) => {
-                const { genres, title, type, releaseDate, status, chapters, author, description, image, lastReadChapter } = response.data
-                setSelectedGenres(genres)
-                setTitle(title)
-                setType(type)
-                setReleaseDate(releaseDate === 'Not entered' ? '' : releaseDate)
-                setStatus(status)
-                setChapters(chapters === 'Not entered' ? '' : chapters)
-                setLastReadChapter(lastReadChapter)
-                setAuthor( author === 'Not entered' ? '' : author)
-                setDescription(description === 'Not entered' ? '' : description)
-                setImageUrl(image)
-            }).catch((error) => {
-                console.log(error);
-            });
+                .then((response) => {
+                    const { genres, title, type, releaseDate, status, chapters, author, description, image, lastWatch } = response.data
+                    setSelectedGenres(genres)
+                    setTitle(title)
+                    setType(type)
+                    setReleaseDate(releaseDate === 'Not entered' ? '' : releaseDate)
+                    setStatus(status)
+                    setChapters(chapters === 'Not entered' ? '' : chapters)
+                    setLastWatch(lastWatch)
+                    setAuthor(author === 'Not entered' ? '' : author)
+                    setDescription(description === 'Not entered' ? '' : description)
+                    setImageUrl(image)
+                }).catch((error) => {
+                    console.log(error);
+                });
         }
 
     }, [])
@@ -113,14 +113,14 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
                             </select>
                         </div>
                         <div className="py-[12px]">
-                            <label className={`${labelStyles}`}>N°Chapters</label>
-                            <input value={chapters} required type="number" placeholder="N°Chapters" className={`${inputStyles}`}
+                            <label className={`${labelStyles}`}>N°Chapters or Episodes</label>
+                            <input value={chapters} required type="number" placeholder="N°Chapters or Episodes" className={`${inputStyles}`}
                                 onChange={(e) => setChapters(e.target.value)} />
                         </div>
                         <div className="py-[12px]">
-                            <label className={`${labelStyles}`}>Last Read Chapter</label>
-                            <input value={lastReadChapter} type="number" placeholder="Last Read Chapter" className={`${inputStyles}`}
-                                onChange={(e) => setLastReadChapter(e.target.value)} />
+                            <label className={`${labelStyles}`}>last Watch</label>
+                            <input value={lastWatch} type="number" placeholder="last Watch" className={`${inputStyles}`}
+                                onChange={(e) => setLastWatch(e.target.value)} />
                         </div>
                         <div className="py-[12px]">
                             <label className={`${labelStyles}`}>Author</label>

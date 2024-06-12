@@ -35,8 +35,8 @@ const FavoriteSeries = ({ serieType, sectionBar }: Props) => {
                             <>
                                 {slicedData!.length > 0 ? (
                                     <div className="pt-[20px] grid xl:grid-cols-4  md:grid-cols-2 xl:gap-x-[12px] gap-x-[20px] gap-y-[20px]">
-                                        {slicedData?.map(({ _id, title, image, status, chapters, lastReadChapter }) => (
-                                            <SeriesCard key={_id} id={_id} title={title} image={image} status={status} chapters={chapters} lastReadChapter={lastReadChapter} />
+                                        {slicedData?.map(({ _id, title, image, status,type, chapters, lastWatch }) => (
+                                            <SeriesCard key={_id} id={_id} type={type} title={title} image={image} status={status} chapters={chapters} lastWatch={lastWatch} />
                                         ))}
                                     </div>
                                 ) : (

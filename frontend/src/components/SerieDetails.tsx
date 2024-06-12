@@ -61,7 +61,7 @@ const SerieDetails = () => {
                                             <img src={data?.image} alt={data?.title} className="object-cover w-[128px] h-[128px] rounded-[12px]" />
                                             <div>
                                                 <h3 className="text-22 font-bold text-white">{data?.title}</h3>
-                                                <p className="flex flex-wrap items-center gap-[4px] text-16 font-normal text-lightSkyBlue">{data?.releaseDate} <span className=" inline-block bg-lightSkyBlue w-[4px] h-[4px] rounded-full" /> {data?.chapters} chapters</p>
+                                                <p className="flex flex-wrap items-center gap-[4px] text-16 font-normal text-lightSkyBlue">{data?.releaseDate} <span className=" inline-block bg-lightSkyBlue w-[4px] h-[4px] rounded-full" /> {data?.chapters} {data?.type === 'Anime' ? 'episodes' : 'chapters'}</p>
                                                 <span className="text-16 text-lightSkyBlue capitalize">{data?.type}</span>
                                             </div>
                                         </div>
@@ -90,8 +90,8 @@ const SerieDetails = () => {
                                             <p className="mt-[16px] text-[14px] leading-[24px] capitalize">{data?.type}</p>
                                         </div>
                                         <div className={`${headerStyles}`}>
-                                            <h4 className="text-22 font-bold leading-[27px]">Last Read Chapter</h4>
-                                            <p className="mt-[16px] text-[14px] leading-[24px] capitalize">Chapter {data?.lastReadChapter}</p>
+                                            <h4 className="text-22 font-bold leading-[27px]">last Watch</h4>
+                                            <p className="mt-[16px] text-[14px] leading-[24px] capitalize">{data?.type === 'Anime' ? 'episode' : 'chapter'}: {data?.lastWatch}</p>
                                         </div>
                                         <div className={`${headerStyles}`}>
                                             <h4 className="text-22 font-bold leading-[27px]">Genres</h4>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { CreationEditForm } from "../components"
 import axios from "axios";
 import { ArgTypes } from '../types'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { container } from "../classes";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaRegCircleXmark } from "react-icons/fa6";
@@ -10,7 +10,7 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 const CreateSeries = () => {
   const [noUser, setNoUser] = useState<boolean | null>()
   const navigate = useNavigate()
-  const handleSubmitSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, author, lastReadChapter, description, imageUrl, selectedGenres }: ArgTypes) => {
+  const handleSubmitSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, author, lastWatch, description, imageUrl, selectedGenres }: ArgTypes) => {
     if (title && type && chapters && imageUrl) {
       e.preventDefault();
       const userData = JSON.parse(localStorage.getItem('userData') as string)
@@ -23,7 +23,7 @@ const CreateSeries = () => {
             releaseDate: releaseDate || 'Not entered',
             status: status,
             chapters: chapters,
-            lastReadChapter: lastReadChapter,
+            lastWatch: lastWatch || '0',
             author: author || 'Not entered',
             description: description || 'Not entered',
             image: imageUrl,
@@ -45,6 +45,12 @@ const CreateSeries = () => {
     }
 
   };
+
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <div>
       {noUser && (

@@ -1,6 +1,12 @@
+import { useEffect } from "react"
 import {FavoriteSeries, HeroSection} from "../components"
 const Home = () => {
 
+
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
   return (
     <div>
       <HeroSection/>

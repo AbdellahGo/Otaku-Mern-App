@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom"
 import { noSeries } from "../assets"
 import { container } from "../classes"
+import { useEffect } from "react"
 
 const NotFoundPage = () => {
+
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }, [])
     return (
         <div>
             <div className={`${container}`}>
