@@ -1,15 +1,21 @@
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { container } from "../classes"
-import { otakuLogo, profileAvatar } from '../assets'
+import { manga, otakuLogo, profileAvatar } from '../assets'
 import { useEffect, useRef, useState } from 'react';
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
+import { IoIosArrowDown } from "react-icons/io";
 
 
 type NavLinksTypes = {
   id: number;
   text: string;
   link: string;
+}[]
+type SourcesTypes = {
+  id: number,
+  title: string,
+  link: string
 }[]
 
 const navLinks: NavLinksTypes = [
@@ -44,8 +50,56 @@ const navLinks: NavLinksTypes = [
     link: '/create-series'
   },
 ]
+const sources: SourcesTypes = [
+  {
+    id: 1,
+    title: 'MangaLionz',
+    link: 'https://manga-lionz.com/'
+  },
+  {
+    id: 2,
+    title: 'Lekmanga',
+    link: 'https://lekmanga.net/'
+  },
+  {
+    id: 3,
+    title: 'Azoramoon',
+    link: 'https://azoramoon.com/'
+  },
+  {
+    id: 4,
+    title: 'Mangarose',
+    link: 'https://mangarose.net/'
+  },
+  {
+    id: 5,
+    title: 'Teamxnovel',
+    link: 'https://teamxnovel.com/'
+  },
+  {
+    id: 6,
+    title: 'Areascans',
+    link: 'https://www.areascans.net/'
+  },
+  {
+    id: 7,
+    title: 'Swatmanga',
+    link: 'https://normoyun.com/'
+  },
+  {
+    id: 8,
+    title: 'Xsaniime',
+    link: 'https://xsaniime.com/'
+  },
+  {
+    id: 9,
+    title: 'Anime3rb',
+    link: 'https://anime3rb.com/'
+  },
+]
 
 const NavBar = () => {
+  const [sourcesToggle, setSourcesToggle] = useState<boolean>(false)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const { pathname } = useLocation()
   const [activeLink, setActiveLink] = useState(pathname)
@@ -58,7 +112,7 @@ const NavBar = () => {
   const [activeSubMenu, setActiveSubMenu] = useState<boolean>(false)
 
 
-  
+
 
   const handleLogin = (e: React.FormEvent) => {
     const username = usernameInput.current?.value
@@ -132,6 +186,21 @@ const NavBar = () => {
                 </NavLink>
               </li>
             ))}
+            <li className='w-full relative'>
+              <button className='flex items-center justify-between gap-[4px] text-start transition Mmd:border-1 w-full border-lightSkyBlue text-14 font-medium leading-[21px] hover:bg-brightBlue lg:px-[15px] px-[10px] py-[8px] rounded-[4px]'
+                onClick={() => setSourcesToggle((prev) => !prev)}>
+                Sources
+                <IoIosArrowDown className='text-16'/>
+              </button>
+              <div className={`${sourcesToggle ? 'flex': 'hidden'} flex-col gap-[10px] pt-[10px] md:absolute md:w-[230px] md:bg-darkBlueGray md:border-1 border-lightSkyBlue md:p-[15px] rounded-[8px] md:top-[70px] md:right-0`}>
+                {sources.map(({ id, title, link }) => (
+                  <a key={id} href={link} target='_blank' className='hover:bg-deepSlateBlue transition flex items-center gap-[4px] border-1 border-lightSkyBlue rounded-[4px] p-[6px]'>
+                    <img src={manga} alt="image" className='w-[20px]' />
+                    <h4 className='text-[12px]'>{title}</h4>
+                  </a>
+                ))}
+              </div>
+            </li>
           </ul>
           <div className='flex gap-[15px] flex-row-reverse'>
             <button className='block' onClick={() => handleControlMenus('login')}>
