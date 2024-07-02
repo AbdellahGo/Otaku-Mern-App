@@ -16,6 +16,7 @@ type SerieType = {
     _id: string,
     title: string,
     image: string,
+    source: string,
     status: string,
     chapters: string
     type: string
@@ -27,6 +28,7 @@ type SerieType = {
 } | undefined
 
 const baseUrl = 'https://otaku-mern-app.onrender.com/otaku'
+// const baseUrl = 'http://localhost:8080/otaku'
 export const seriesApi = createApi({
     reducerPath: 'seriesApi',
     baseQuery: fetchBaseQuery({ baseUrl }),

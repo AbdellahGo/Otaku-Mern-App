@@ -16,7 +16,6 @@ const FavoriteSeries = ({ serieType, sectionBar }: Props) => {
 
     useEffect(() => {
         refetch();
-
     }, []);
     return (
         <>

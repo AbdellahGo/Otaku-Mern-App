@@ -7,7 +7,7 @@ const router = express.Router()
 //? Route for Save a new (Manga, Manhwa, Manhua, Anime)
 
 router.post('/', async (request, response) => {
-    const { title, type, releaseDate, status, chapters, author, genres, lastWatch, description, image } = request.body
+    const { title, type, releaseDate, status, chapters, author, genres, lastWatch, description, image, source } = request.body
     try {
         if (!title || !type || !chapters || !image) {
             return response.status(400).send(({
@@ -15,7 +15,7 @@ router.post('/', async (request, response) => {
             }))
         }
         const newOtaku = {
-            title, type, releaseDate, status, chapters, author, genres, description, image, lastWatch
+            title, type, releaseDate, status, chapters, author, genres, description, image, lastWatch, source
         }
         const otaku = await Otaku.create(newOtaku)
         return response.status(201).send(otaku)

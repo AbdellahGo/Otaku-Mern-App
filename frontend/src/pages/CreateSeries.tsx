@@ -10,11 +10,12 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 const CreateSeries = () => {
   const [noUser, setNoUser] = useState<boolean | null>()
   const navigate = useNavigate()
-  const handleSubmitSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, author, lastWatch, description, imageUrl, selectedGenres }: ArgTypes) => {
+  const handleSubmitSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, author, lastWatch, description, imageUrl, sourceUrl, selectedGenres }: ArgTypes) => {
     if (title && type && chapters && imageUrl) {
       e.preventDefault();
       const userData = JSON.parse(localStorage.getItem('userData') as string)
       if (userData && userData?.username === process.env.USERNAME_DB && userData?.password === process.env.PASSWORD_DB) {
+        console.log(sourceUrl);
         try {
           const data = {
             genres: selectedGenres,
@@ -27,9 +28,11 @@ const CreateSeries = () => {
             author: author || 'Not entered',
             description: description || 'Not entered',
             image: imageUrl,
+            source: sourceUrl || 'No source entered',
           };
 
           await axios.post('https://otaku-mern-app.onrender.com/otaku', data);
+          // await axios.post('http://localhost:8080/otaku', data);
           navigate('/');
         } catch (error) {
           if (axios.isAxiosError(error)) {

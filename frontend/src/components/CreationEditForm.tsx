@@ -18,8 +18,10 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
     const [author, setAuthor] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [imageUrl, setImageUrl] = useState<string>('')
+    const [sourceUrl, setSourceUrl] = useState<string>('')
 
-    const formData = { title, type, releaseDate, status, chapters, author, description, imageUrl, selectedGenres, lastWatch }
+    const formData = { title, type, releaseDate, status, chapters, author, description, imageUrl, sourceUrl, selectedGenres, lastWatch }
+
 
     const inputStyles: string = 'w-full outline-none bg-veryDarkBlueGray p-[15px] rounded-[12px] placeholder:text-lightSkyBlue text-16 leading-[24px] text-lightSkyBlue border-1 border-lightSkyBlue'
     const labelStyles: string = 'block text-18 font-semibold mb-[8px]'
@@ -59,8 +61,9 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
     useEffect(() => {
         if (id) {
             axios.get(`https://otaku-mern-app.onrender.com/otaku/${id}`)
+            // axios.get(`http://localhost:8080/otaku/${id}`)
                 .then((response) => {
-                    const { genres, title, type, releaseDate, status, chapters, author, description, image, lastWatch } = response.data
+                    const { genres, title, type, releaseDate, status, chapters, author, description, image, source, lastWatch } = response.data
                     setSelectedGenres(genres)
                     setTitle(title)
                     setType(type)
@@ -71,6 +74,7 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
                     setAuthor(author === 'Not entered' ? '' : author)
                     setDescription(description === 'Not entered' ? '' : description)
                     setImageUrl(image)
+                    setSourceUrl(source === 'No source entered' ? '' : source)
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -151,6 +155,14 @@ const CreationEditForm: React.FC<{ handleNatureCall: (e: React.MouseEvent<HTMLBu
                             <div className='border-1 border-lightSkyBlue rounded-[12px] relative'>
                                 <input value={imageUrl} required placeholder="Image Url" className={`border-none ${inputStyles}`}
                                     onChange={(e) => setImageUrl(e.target.value)} />
+                                <FaLink className="absolute text-lightSkyBlue text-18 right-[12px] top-[50%] translate-y-[-50%]" />
+                            </div>
+                        </div>
+                        <div className="py-[12px]">
+                            <label className={`${labelStyles}`}>Source Url</label>
+                            <div className='border-1 border-lightSkyBlue rounded-[12px] relative'>
+                                <input value={sourceUrl} placeholder="Source Url" className={`border-none ${inputStyles}`}
+                                    onChange={(e) => setSourceUrl(e.target.value)} />
                                 <FaLink className="absolute text-lightSkyBlue text-18 right-[12px] top-[50%] translate-y-[-50%]" />
                             </div>
                         </div>

@@ -15,13 +15,14 @@ const SerieDetails = () => {
     const navigate = useNavigate()
     const { data, isLoading, refetch } = useGetSerieByIdQuery(id)
     const headerStyles: string = 'px-[16px] pb-[12px] pt-[20px] text-white'
-    
+
     const handleDeleteSerie = async () => {
         const userData = JSON.parse(localStorage.getItem('userData') as string)
         if (userData && userData?.username === process.env.USERNAME_DB && userData?.password === process.env.PASSWORD_DB) {
             setNoUser(false)
             try {
-                axios.delete(`https://otaku-mern-app.onrender.com/otaku/${id}`)
+                // axios.delete(`https://otaku-mern-app.onrender.com/otaku/${id}`)
+                axios.delete(`http://localhost:8080/otaku/${id}`)
                 navigate('/')
             } catch (error) {
                 console.log(error);
@@ -110,6 +111,14 @@ const SerieDetails = () => {
                                         <div className={`${headerStyles}`}>
                                             <h4 className="text-22 font-bold leading-[27px]">Authors</h4>
                                             <p className="w-fit mt-[16px] text-[14px] font-medium leading-[21px] bg-grayBlue px-[16px] py-[10px] rounded-[12px] capitalize">{data?.author}</p>
+                                        </div>
+                                        <div className={`${headerStyles}`}>
+                                            <h4 className="text-22 font-bold leading-[27px]">Source</h4>
+                                            <p className="w-fit mt-[16px] text-[14px] hover:bg-brightBlue transition font-medium leading-[21px] bg-grayBlue px-[16px] py-[10px] rounded-[12px]">
+                                                <a href={data?.source} target="_blank">
+                                                {data?.source}
+                                                </a>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

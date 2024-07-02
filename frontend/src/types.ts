@@ -7,6 +7,7 @@ export type ArgTypes = {
   author: string,
   description: string,
   imageUrl: string,
+  sourceUrl: string,
   lastWatch: string,
   selectedGenres: string[],
 }

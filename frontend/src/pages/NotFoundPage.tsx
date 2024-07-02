@@ -18,8 +18,6 @@ const NotFoundPage = () => {
                         Sorry, this page does not exist. To go to the home page, click on this Link <Link to='/' className="underline inline-block font-bold text-brightBlue">Home</Link>
                     </p>
                 </div>
-                {/* <p className="">Unfortunately, you have not created any {serieType}
-                                    <FaInfoCircle className="inline-block ml-[10px] lg:text-22 text-18" /></p> */}
             </div>
         </div>
     )

@@ -43,6 +43,10 @@ const otakuSchema = mongoose.Schema(
             type: String,
             require: true,
         },
+        source: {
+            type: String,
+            require: true,
+        }
     },
     {
         timestamps: true,

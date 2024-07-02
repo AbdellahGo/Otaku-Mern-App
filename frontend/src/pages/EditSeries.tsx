@@ -13,7 +13,7 @@ const EditSeries = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    const handleEditSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, lastWatch, author, description, imageUrl, selectedGenres }: ArgTypes) => {
+    const handleEditSerie = async (e: React.MouseEvent<HTMLButtonElement>, { title, type, releaseDate, status, chapters, lastWatch, author, description, imageUrl,sourceUrl, selectedGenres }: ArgTypes) => {
         if (title && type && chapters && imageUrl) {
             e.preventDefault()
             const userData = JSON.parse(localStorage.getItem('userData') as string)
@@ -31,8 +31,10 @@ const EditSeries = () => {
                         author: author || 'Not entered',
                         description: description || 'Not entered',
                         image: imageUrl,
+                        source: sourceUrl || 'No source entered',
                     };
                     await axios.put(`https://otaku-mern-app.onrender.com/otaku/${id}`, data);
+                    // await axios.put(`http://localhost:8080/otaku/${id}`, data);
                     axios.get(``)
                     navigate('/');
                 } catch (error) {
